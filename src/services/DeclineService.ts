@@ -73,7 +73,7 @@ class DeclineService {
                 if (this.lastLetter === 'о') {
                     return this.nounBase + 'а';
                 }
-                return this.isExceptionHeterogeneous() ? this.nounBase + 'и' : this.nounBase + 'а';
+                return this.isExceptionHeterogeneous() ? this.nounBase + 'и' : this.noun + 'а';
             case 'third':
                 return this.nounBase + 'и';
             case 'heterogeneous':
@@ -86,15 +86,18 @@ class DeclineService {
     makeNounDative() {
         switch (this.defineDeclination()) {
             case 'first':
-                return this.lastLetter === 'а' ? this.nounBase + 'ы' : this.nounBase + 'и';
+                return this.nounBase + 'е'
             case 'second':
                 if (this.lastLetter === 'о') {
-                    return this.nounBase + 'ы';
+                    return this.nounBase + 'у';
+                }
+                if (this.lastLetter === 'е') {
+                    return this.nounBase + 'ю';
                 }
                 if (this.lastLetter === 'ь') {
                     return this.nounBase + 'и'
                 }
-                return this.nounBase + 'а';
+                return this.noun + 'у';
             case 'third':
                 return this.nounBase + 'и';
             case 'heterogeneous':
@@ -121,7 +124,7 @@ class DeclineService {
             case 'first':
                 return this.lastLetter === 'а' ? this.nounBase + 'ой' : this.nounBase + 'ей';
             case 'second':
-                return this.lastLetter === 'о' ? this.nounBase + 'ом' : this.nounBase + 'ем';
+                return this.lastLetter === 'о' ? this.nounBase + 'ом' : this.noun + 'ем';
             case 'third':
                 return this.noun + 'ю'
             case 'heterogeneous':
@@ -136,7 +139,7 @@ class DeclineService {
 
             case 'first':
             case 'second':
-                return this.isExceptionHeterogeneous() ? this.nounBase + 'и' : this.nounBase + 'е';
+                return this.isExceptionHeterogeneous() ? this.nounBase + 'и' : this.noun + 'е';
             case 'third':
                 return this.nounBase + 'и';
             case 'heterogeneous':
