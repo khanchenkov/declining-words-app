@@ -4,7 +4,7 @@ import DeclineService from "../../services/DeclineService";
 
 const FormInput = ({setCurrDeclinedWord}: {setCurrDeclinedWord: any}) => {
 
-    const [inputText, setInputText] = useState('помощь');
+    const [inputText, setInputText] = useState('время');
 
     const DecService = new DeclineService(inputText);
 

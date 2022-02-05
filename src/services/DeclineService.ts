@@ -1,9 +1,9 @@
 class DeclineService {
-    noun: string;
-    nounBase: string;
-    lastLetter: string;
-    last2Letters: string;
-    last4Letters: string;
+    readonly noun: string;
+    readonly nounBase: string;
+    readonly lastLetter: string;
+    readonly last2Letters: string;
+    readonly last4Letters: string;
 
     constructor(noun: string) {
         this.noun = noun.toLowerCase();
@@ -13,7 +13,7 @@ class DeclineService {
         this.last4Letters = this.noun.slice(-4);
     }
 
-    defineCases() {
+    public defineCases() {
         return [
             this.noun,
             this.makeNounGenitive(),
@@ -24,7 +24,7 @@ class DeclineService {
         ]
     }
 
-    defineGender() {
+    private defineGender() {
         if (this.last4Letters === 'ость') {
             if (this.noun === 'гость') {
                 return 'masculine';
@@ -39,7 +39,7 @@ class DeclineService {
         }
     }
 
-    defineDeclination() {
+    private defineDeclination() {
         switch (this.lastLetter) {
             case 'а':
             case 'я':
@@ -58,11 +58,11 @@ class DeclineService {
         }
     }
 
-    getNominativeNoun() {
+    public getNominativeNoun() {
         return this.noun;
     }
 
-    makeNounGenitive() {
+    public makeNounGenitive() {
         switch (this.defineDeclination()) {
             case 'first':
                 return this.lastLetter === 'а' ? this.nounBase + 'ы' : this.nounBase + 'и';
@@ -83,7 +83,7 @@ class DeclineService {
         }
     };
 
-    makeNounDative() {
+    public makeNounDative() {
         switch (this.defineDeclination()) {
             case 'first':
                 return this.nounBase + 'е'
@@ -107,7 +107,7 @@ class DeclineService {
         }
     }
 
-    makeNounAccusative() {
+    public makeNounAccusative() {
         switch (this.defineDeclination()) {
             case 'first':
                 return this.lastLetter === 'а' ? this.nounBase + 'у' : this.nounBase + 'ю';
@@ -119,7 +119,7 @@ class DeclineService {
         }
     }
 
-    makeNounAblative() {
+    public makeNounAblative() {
         switch (this.defineDeclination()) {
             case 'first':
                 return this.lastLetter === 'а' ? this.nounBase + 'ой' : this.nounBase + 'ей';
@@ -134,7 +134,7 @@ class DeclineService {
         }
     }
 
-    makeNounPrepositional() {
+    public makeNounPrepositional() {
         switch (this.defineDeclination()) {
 
             case 'first':
@@ -149,18 +149,18 @@ class DeclineService {
         }
     }
 
-    isHeterogeneous() {
+    private isHeterogeneous() {
         const heterogeneous = [
             'бремя', 'время', 'вымя', 'знамя', 'имя', 'пламя', 'племя', 'семя', 'стремя', 'темя'
         ];
         return heterogeneous.indexOf(this.noun) >= 0;
     }
 
-    isExceptionHeterogeneous() {
+    private isExceptionHeterogeneous() {
         return this.noun === 'путь'
     }
 
-    isPopularIndeclinable() {
+    private isPopularIndeclinable() {
         const indeclinable = [
         'боа', 'бра', 'фейхоа', 'амплуа', 'буржуа',
         'манго', 'какао', 'кино', 'трюмо', 'пальто', 'бюро', 'танго', 'вето', 'бунгало', 'сабо', 'авокадо', 'депо',
