@@ -138,6 +138,7 @@ class DeclineService {
         switch (this.defineDeclination()) {
 
             case 'first':
+                return this.nounBase + 'е';
             case 'second':
                 return this.isExceptionHeterogeneous() ? this.nounBase + 'и' : this.noun + 'е';
             case 'third':
